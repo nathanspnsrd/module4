@@ -1,0 +1,19 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: space-between;
+    background-color:blue;
+    width: 75%;
+    padding: 20px;
+}
+
+.button {
+    width: 100px;
+    margin: 15px;
+    margin-left: 40%;
+}
+
+.inputItem {
+    margin: 10px;
+}

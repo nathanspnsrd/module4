@@ -1,0 +1,26 @@
+.light-main {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    height: 457px;
+    padding: 25px;
+    background-color: beige;
+}
+
+.dark-main {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    height: 457px;
+    padding: 25px;
+    background-color: darkgray;
+    color: red;
+}
+
+.button {
+    margin: 25px;
+}

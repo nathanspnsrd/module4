@@ -13,10 +13,9 @@ export default function App() {
         <div>
           <StoreContextConsumer>
             {context => (
-              console.log(context)
-              // context.completedSubmissions.map(completedSubmission => 
-              //   <SubmittedImages {...completedSubmission} />         
-              // )
+              context.completedSubmissions.map(completedSubmission => 
+                <SubmittedImages {...completedSubmission} />         
+              )
             )}
           </StoreContextConsumer>
         </div>

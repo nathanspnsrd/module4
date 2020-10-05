@@ -28,7 +28,11 @@ class StoreContextProvider extends React.Component {
  
     render() {
         return (
-            <Provider value={{}}>
+            <Provider value={{ 
+                    ...this.props.state,
+                    handleSubmit: this.handleSubmit,
+                    handleChange: this.handleChange
+                }}>
                 {this.props.children}
             </Provider>
         )

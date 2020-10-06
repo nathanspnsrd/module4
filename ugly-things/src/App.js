@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SubmissionForm from "./SubmissionForm"
-import SubmittedImages from "./SubmittedImages"
+import SubmittedImage from "./SubmittedImage"
 
 import './App.css';
 import { StoreContextConsumer } from './storeContext';
@@ -14,7 +14,7 @@ export default function App() {
           <StoreContextConsumer>
             {context => (
               context.completedSubmissions.map(completedSubmission => 
-                <SubmittedImages {...completedSubmission} />         
+                <SubmittedImage {...completedSubmission} />         
               )
             )}
           </StoreContextConsumer>

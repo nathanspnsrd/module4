@@ -17,19 +17,20 @@ class StoreContextProvider extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.setState({title: "", url:"", description:""})
 
-        let newSubmission = {title: this.state.title, url: this.state.url, description: this.state.description}
-
-        this.setState(prevState => ({
-                completedSubmissions: [newSubmission, ...prevState.completedSubmissions]
-        }))
+        this.setState(prevState => {
+                let newSubmission = {title: prevState.title, url: prevState.url, description: prevState.description}
+                return {
+                    completedSubmissions: [newSubmission, ...prevState.completedSubmissions],
+                    title: "", url:"", description:""
+                }
+        })
     }
  
     render() {
         return (
             <Provider value={{ 
-                    ...this.props.state,
+                    ...this.state,
                     handleSubmit: this.handleSubmit,
                     handleChange: this.handleChange
                 }}>

@@ -3,26 +3,28 @@ import { StoreContextConsumer } from "./storeContext"
 
 import "./submissionForm.css"
 
-export default function submissionForm() {
+export default function submissionForm(props) {
     return (
         <StoreContextConsumer>
             {context => (
                 <div>
-                    <form className="form" onChange={context.handleChange}>
+                    <form className="form" onSubmit={context.handleSubmit}>
                         <div>
                             <input
                                 value={context.title} 
                                 className="inputItem"
                                 type="text"
-                                name="Title"
+                                name="title"
                                 placeholder="Title"
+                                onChange={context.handleChange}
                             />
                             <input 
                                 value={context.url} 
                                 className="inputItem"
                                 type="text"
-                                name="URL"
+                                name="url"
                                 placeholder="Img URL"
+                                onChange={context.handleChange}
                             />
                             <input
                                 value={context.description} 
@@ -30,9 +32,10 @@ export default function submissionForm() {
                                 type="text"
                                 name="description"
                                 placeholder="Description"
+                                onChange={context.handleChange}
                             />
                         </div>
-                        <button onCick={context.handleSubmit} className="button">Submit</button>
+                        <button className="button">Submit</button>
                     </form>
                 </div>
             )}

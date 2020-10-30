@@ -1,0 +1,59 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-around;
+  font-size: larger;
+  background-color: aliceblue;
+  color: darkblue;
+  padding: 10px;
+}
+
+h1 {
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+  font-size: larger;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+a:visited {
+  color: black;
+}
+
+main {
+  text-align: center;
+  padding: 200px;
+  background-color: darkcyan;
+  color: aliceblue;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: aliceblue;
+  color: black;
+  vertical-align: bottom;
+}
+
+@media only screen and (max-width: 600px) {
+  nav {
+    flex-direction: column;
+  }
+
+  main {
+    text-align: center;
+    padding: 100px;
+    background-color: cyan;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 10px;
+    background-color: aliceblue;
+    color: black;
+    font-size: small;
+  }
+}

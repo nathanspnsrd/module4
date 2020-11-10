@@ -1,8 +1,14 @@
-import React from "react"
+import React, {useContext} from "react"
+
+import CommunityCard from "./CommunityCard"
+import {CardContext} from "./cardContext"
 
 export default function Likes() {
-    return (
-        <h1>This is the Likes page</h1>
-        //use context from home
-    )
+    const {isLiked} = useContext(CardContext)
+
+    if ({isLiked} === true) {
+        return (
+            <CommunityCard />
+        )
+    }
 }

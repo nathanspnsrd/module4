@@ -11,7 +11,7 @@ export default function App() {
       <NavBar />
       <Main />
       <footer>
-        <h2>Thank you to ProPublica for providing this list of nonprofit organizations.</h2>
+        <h2>spnsrd is an app which helps you to better support small businesses.</h2>
       </footer>
     </div>
   );

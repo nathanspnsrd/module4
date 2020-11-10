@@ -4,7 +4,7 @@ export default function About() {
     return (
         <div>
             <h1>About</h1>
-            <p>We have created a list of nonprofits so that our sales team can easily reach out to them and bring them onto spnsrd.</p>
+            <p>I run the spnsrd platform and am using this React app as a way to practice and understand my code better.</p>
         </div>
     )
 }

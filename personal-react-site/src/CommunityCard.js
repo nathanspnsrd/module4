@@ -1,14 +1,14 @@
-import React, {useContext} from "react"
+import React from "react"
 
-import {CardContext} from "./cardContext"
+import LikeButton from "./LikeButton"
 
-export default function CommunityCard() {
-    const {title, logo, description} = useContext(CardContext)
+export default function CommunityCard({community: {title, logo, description}}) {
     return (
         <div>
             <h2>{title}</h2>
-            <img src={`${logo}`} />
+            <img src={logo} />
             <p>{description}</p>
+            <LikeButton />
         </div>
     ) 
 }

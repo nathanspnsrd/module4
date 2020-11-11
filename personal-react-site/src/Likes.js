@@ -4,11 +4,11 @@ import CommunityCard from "./CommunityCard"
 import {CardContext} from "./cardContext"
 
 export default function Likes() {
-    const {isLiked} = useContext(CardContext)
+    const {likedCommunities} = useContext(CardContext)
 
-    if ({isLiked} === true) {
-        return (
-            <CommunityCard />
-        )
-    }
+    return (
+        <div>
+            {likedCommunities.map((community) => <CommunityCard community={community} />) }
+        </div>
+    )
 }

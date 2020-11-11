@@ -1,37 +1,27 @@
-import React, {useState, useEffect, useContext} from "react"
+import React, {useEffect, useContext} from "react"
 
 import CommunityCard from "./CommunityCard"
 import {CardContext} from "./cardContext"
 
 export default function Home() {
-    const [community, setCommunity] = useState({title: "", logo: "", description: ""})
-    const [communities, setCommunities] = useState([])
-    const {toggleLike, whenButtonClick} = useContext(CardContext)
+    const {communities, title, logo, description, isLiked, getCommunity, setCommunity} = useContext(CardContext)
 
     useEffect(() => {
-        fetch("https://admin.spnsrd.com/api/community/list")
-            .then(response => response.json())
-            .then(response => {
-                setCommunities(response.data)
-            })
-        }
-    , [])
+        getCommunity()
+    }, [])
 
     function handleButtonClick(event) {
         event.preventDefault()
 
         const randomIndex = Math.floor(Math.random() * communities.length)
         const randCommunity = communities[randomIndex]
-        setCommunity({community: randCommunity})
-        whenButtonClick()
+        setCommunity({title: randCommunity?.title, logo: randCommunity?.logo, description: randCommunity?.description, isLiked: false})
     }
     
     return (
         <div>
-            <h1>Home</h1>
-            <CommunityCard />
-            <button onClick={toggleLike}>Like this Community</button>
-            <button onClick={handleButtonClick}>See New Community</button>
+            <CommunityCard community={{title, logo, description, isLiked}}/>
+            <button onClick={handleButtonClick}>Explore Different Communities</button>
         </div>
     )
 }

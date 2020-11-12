@@ -1,4 +1,5 @@
 import React from "react"
+import { v4 as uuidv4 } from 'uuid'
 
 const {Provider, Consumer} = React.createContext()
 
@@ -7,6 +8,7 @@ class StoreContextProvider extends React.Component {
         title: "",
         url: "",
         description: "",
+        _id: "",
         completedSubmissions: []
     }
 
@@ -19,12 +21,26 @@ class StoreContextProvider extends React.Component {
         event.preventDefault()
 
         this.setState(prevState => {
-                let newSubmission = {title: prevState.title, url: prevState.url, description: prevState.description}
-                return {
-                    completedSubmissions: [newSubmission, ...prevState.completedSubmissions],
-                    title: "", url:"", description:""
-                }
+            let newSubmission = {title: prevState.title, url: prevState.url, description: prevState.description, _id: uuidv4()}
+            return {
+                completedSubmissions: [newSubmission, ...prevState.completedSubmissions],
+                title: "", url: "", description: "", _id: ""
+            }
         })
+
+    }
+
+    handleEdit = _id => {
+        this.setState({title, url, description})
+    }
+
+    handleDelete = _id => {
+        this.setState(prevState => {
+            return {
+                completedSubmissions: prevState.completedSubmissions.filter(thing => thing._id !== _id)
+            }
+        })
+        
     }
  
     render() {
@@ -32,7 +48,9 @@ class StoreContextProvider extends React.Component {
             <Provider value={{ 
                     ...this.state,
                     handleSubmit: this.handleSubmit,
-                    handleChange: this.handleChange
+                    handleChange: this.handleChange,
+                    handleEdit: this.handleEdit,
+                    handleDelete: this.handleDelete
                 }}>
                 {this.props.children}
             </Provider>

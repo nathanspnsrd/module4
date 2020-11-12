@@ -8,7 +8,7 @@ export default function Likes() {
 
     return (
         <div>
-            {likedCommunities.map((community) => <CommunityCard community={community} />) }
+            {likedCommunities.map((community) => <CommunityCard community={community} type='liked' />) }
         </div>
     )
 }

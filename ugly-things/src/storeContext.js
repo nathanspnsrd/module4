@@ -30,9 +30,20 @@ class StoreContextProvider extends React.Component {
 
     }
 
-    handleEdit = _id => {
-        this.setState({title, url, description})
-    }
+    // //This
+    // handleEdit = _id => {
+    //     this.setState({title, url, description})
+    // }
+
+    // //Or this
+    // handleEdit = _id => {
+    //     this.setState(prevState => {
+    //         let {title, url, description} = prevState
+    //         return {
+
+    //         }
+    //     })
+    // }
 
     handleDelete = _id => {
         this.setState(prevState => {

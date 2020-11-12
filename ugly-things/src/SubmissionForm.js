@@ -1,44 +1,64 @@
-import React from "react"
+import React, {useState} from "react"
 import { StoreContextConsumer } from "./storeContext"
 
 import "./submissionForm.css"
 
-export default function submissionForm(props) {
-    return (
+const SubmissionForm = (props) => {
+    const [inputs, setInputs]  = useState({title: props.info?.title || '', description:props.info?.description || '', url:props.info?.url || ''}) 
+
+    const handleChange = event => {
+        const {name, value} = event.target
+        setInputs(prev => ({...prev, [name]: value }))
+    }
+
+    let {title, url, description} = inputs
+    return ( 
         <StoreContextConsumer>
             {context => (
-                <div>
-                    <form className="form" onSubmit={context.handleSubmit}>
-                        <div>
-                            <input
-                                value={context.title} 
-                                className="inputItem"
-                                type="text"
-                                name="title"
-                                placeholder="Title"
-                                onChange={context.handleChange}
-                            />
-                            <input 
-                                value={context.url} 
-                                className="inputItem"
-                                type="text"
-                                name="url"
-                                placeholder="Img URL"
-                                onChange={context.handleChange}
-                            />
-                            <input
-                                value={context.description} 
-                                className="inputItem" 
-                                type="text"
-                                name="description"
-                                placeholder="Description"
-                                onChange={context.handleChange}
-                            />
-                        </div>
-                        <button className="button">Submit</button>
-                    </form>
-                </div>
+            <div>
+                <form className={props.type === "submissionForm" ? "form" : "edit-form"} 
+                onSubmit={(e) => {
+                        e.preventDefault()
+                        if(props.type === 'submissionForm'){
+                            context.submitThing(inputs)
+                        }else {
+                            context.editThing(props.info._id, inputs)
+                            props.toggle()
+                        }
+                        setInputs({title: '', description: '', url: ''})
+                                }}>
+                    <div>
+                        <input
+                            value={title} 
+                            className="inputItem"
+                            type="text"
+                            name="title"
+                            placeholder="Title"
+                            onChange={handleChange}
+                        />
+                        <input 
+                            value={url} 
+                            className="inputItem"
+                            type="text"
+                            name="url"
+                            placeholder="Img URL"
+                            onChange={handleChange}
+                        />
+                        <input
+                            value={description} 
+                            className="inputItem" 
+                            type="text"
+                            name="description"
+                            placeholder="Description"
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <button className="button">Submit</button>
+                </form>
+            </div>
             )}
-        </StoreContextConsumer>
+        </StoreContextConsumer> 
     )
 }
+
+export default SubmissionForm

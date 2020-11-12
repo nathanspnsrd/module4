@@ -9,58 +9,41 @@ class StoreContextProvider extends React.Component {
         url: "",
         description: "",
         _id: "",
-        completedSubmissions: []
+        completedSubmissions: [],
     }
 
-    handleChange = event => {
-        const {name, value} = event.target
-        this.setState({ [name]: value })
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault()
-
+    submitThing = (thing) => {
         this.setState(prevState => {
-            let newSubmission = {title: prevState.title, url: prevState.url, description: prevState.description, _id: uuidv4()}
+            thing._id = uuidv4()
             return {
-                completedSubmissions: [newSubmission, ...prevState.completedSubmissions],
-                title: "", url: "", description: "", _id: ""
+                completedSubmissions: [thing, ...prevState.completedSubmissions]
             }
         })
-
     }
+    
 
-    // //This
-    // handleEdit = _id => {
-    //     this.setState({title, url, description})
-    // }
-
-    // //Or this
-    // handleEdit = _id => {
-    //     this.setState(prevState => {
-    //         let {title, url, description} = prevState
-    //         return {
-
-    //         }
-    //     })
-    // }
+    editThing = (_id, updatedThing) => {
+        this.setState(prevState => {  
+            return {
+                completedSubmissions: prevState.completedSubmissions.map(thing => thing._id !== _id ? thing : updatedThing)
+            }
+        })
+    }
 
     handleDelete = _id => {
         this.setState(prevState => {
             return {
                 completedSubmissions: prevState.completedSubmissions.filter(thing => thing._id !== _id)
             }
-        })
-        
+        })    
     }
  
     render() {
         return (
             <Provider value={{ 
                     ...this.state,
-                    handleSubmit: this.handleSubmit,
-                    handleChange: this.handleChange,
-                    handleEdit: this.handleEdit,
+                    submitThing: this.submitThing,
+                    editThing: this.editThing,
                     handleDelete: this.handleDelete
                 }}>
                 {this.props.children}

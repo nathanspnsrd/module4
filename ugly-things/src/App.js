@@ -9,7 +9,7 @@ import { StoreContextConsumer } from './storeContext';
 export default function App() {
   return (
       <div className="container">
-        <SubmissionForm />
+        <SubmissionForm type="submissionForm"/>
         <div>
           <StoreContextConsumer>
             {context => (

@@ -5,10 +5,6 @@ const {Provider, Consumer} = React.createContext()
 
 class StoreContextProvider extends React.Component {
     state = {
-        title: "",
-        url: "",
-        description: "",
-        _id: "",
         completedSubmissions: [],
     }
 
